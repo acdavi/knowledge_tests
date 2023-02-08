@@ -1,0 +1,25 @@
+---
+- name: teste
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Cria usuário
+      ansible.builtin.user:
+        name: khomp
+        password: "{{ 'senha' | password_hash('sha512') }}"
+        group: sudo
+
+    - name: Cria webserver
+      apt: name=apache2 update_cache=yes state=latest
+
+    - name: Cria arquivo html
+      file:
+        path: "/var/www/html/index.html"
+        state: touch
+      become: yes
+
+    - name: Insere informação no arquivo HTML
+      copy:
+        dest: "/var/www/html/index.html"
+        content: |
+          "Bem vindo ao meu site"

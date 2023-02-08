@@ -1,0 +1,33 @@
+ apiVersion: v1
+ kind: Pod
+ metadata:
+   name: khomp
+ spec:
+   containers:
+     - name: web1
+       image: nginx
+       resources:
+         requests:
+           memory: "64Mi"
+         limits:
+           memory: "512Mi"
+       ports:
+        - containerPort: 80
+     -name: web2
+      image: nginx
+      resources:
+       requests:
+         memory: "64Mi"
+        limits:
+         memory: "512Mi"
+      Ports:
+       - containerPort: 80
+     -name: web3
+      image: nginx
+      resources:
+       requests:
+         memory: "64Mi"
+        limits:
+         memory: "512Mi"
+      Ports:
+       - containerPort: 80
